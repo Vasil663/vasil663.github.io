@@ -37,11 +37,18 @@ linear-gradient(#020617,#020617)}
 .particle{position:absolute;width:2px;height:2px;background:rgba(56,189,248,.7);border-radius:50%;animation:drift linear infinite}
 @keyframes drift{from{transform:translateY(100vh)}to{transform:translateY(-10vh)}}
 
+#sunrise{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at bottom,#ff8a00 0%,#ff4500 30%,#020617 70%);display:grid;place-items:end center;animation:sky 2.2s ease forwards}
+.sun{width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff7cc,#ffcc00 60%,#ff7a00);box-shadow:0 0 40px rgba(255,200,0,.8),0 0 120px rgba(255,140,0,.6);transform:translateY(160px);animation:rise 2.2s ease forwards}
+@keyframes rise{to{transform:translateY(-40px)}}
+@keyframes sky{to{opacity:0;pointer-events:none}}
+
 footer{opacity:.7;text-align:center;padding:24px}
 header,main,footer{position:relative;z-index:1}
 </style>
 </head>
 <body>
+
+<div id="sunrise"><div class="sun"></div></div>
 <div class="parallax" id="parallax"></div>
 <div class="particles" id="particles"></div>
 
@@ -60,9 +67,10 @@ header,main,footer{position:relative;z-index:1}
       <h1 class="welcome">Добре дошъл в GameZone</h1>
       <p class="subtitle">ULTRA ефекти + гейминг вайб</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-        <button class="btn magnet" onclick="playYT()"><span>▶ Музика 1 мин</span></button>
-        <a class="btn magnet" href="#fortnite"><span>Fortnite</span></a>
-        <a class="btn magnet" href="#cs"><span>CS</span></a>
+        <button class="btn" onclick="playYT()"><span>▶ Музика 1 мин</span></button>
+        <a class="btn" href="#fortnite"><span>Fortnite</span></a>
+        <a class="btn" href="#cs"><span>CS</span></a>
+        <a class="btn" href="https://discord.gg/qygmec9M" target="_blank"><span>💬 Discord</span></a>
       </div>
     </div>
   </section>
