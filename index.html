@@ -18,53 +18,68 @@ body{
   color:#e5e7eb; min-height:100vh; overflow-x:hidden;
 }
 
+/* LOADING SCREEN */
+#loading {
+  position:fixed; inset:0;
+  background:radial-gradient(circle at center, #020a2a, #020617 70%);
+  display:flex; align-items:center; justify-content:center;
+  z-index:9999;
+  transition:opacity .8s ease, visibility .8s ease;
+}
+#loading.hide { opacity:0; visibility:hidden; }
+.loader {
+  text-align:center;
+  color:#c4b5fd;
+  font-weight:900;
+  font-size:24px;
+  text-shadow:0 0 16px #7c3aed;
+}
+.loader span {
+  display:block;
+  margin-top:10px;
+  font-size:14px;
+  color:#94a3b8;
+  letter-spacing:2px;
+}
+
+/* Header */
 header{
   position:sticky;top:0;z-index:10;
   backdrop-filter:blur(10px);
   background:rgba(2,6,23,.75);
   border-bottom:1px solid rgba(124,58,237,.3);
 }
-
 .nav{
   max-width:1200px;margin:auto;
   display:flex;align-items:center;justify-content:space-between;
   padding:14px 20px;
 }
-
 .logo{font-weight:900;font-size:22px;color:#c4b5fd;text-shadow:0 0 12px #7c3aed}
-
 .menu a{
   margin-left:12px;text-decoration:none;color:#cbd5f5;
-  padding:8px 12px;border-radius:10px;font-weight:700;
-  transition:.2s;
+  padding:8px 12px;border-radius:10px;font-weight:700;transition:.2s;
 }
 .menu a:hover{background:rgba(124,58,237,.2);box-shadow:0 0 16px #7c3aed;color:#fff}
-
 .music-toggle{
   margin-left:10px;padding:8px 12px;border-radius:10px;
-  background:rgba(124,58,237,.2);
-  border:1px solid rgba(124,58,237,.6);
-  color:#fff;cursor:pointer;font-weight:700;
-  box-shadow:0 0 12px #7c3aed;
+  background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.6);
+  color:#fff;cursor:pointer;font-weight:700;box-shadow:0 0 12px #7c3aed;
 }
 
+/* Layout */
 main{
   max-width:1200px;margin:40px auto 100px;padding:0 20px;
   display:flex;flex-direction:column;gap:40px;
 }
-
 section{
   background:linear-gradient(180deg,#020b1f,#020617);
   border-radius:18px;padding:24px;
   border:1px solid rgba(124,58,237,.25);
   box-shadow:0 0 40px rgba(124,58,237,.2);
 }
-
 h2{margin-bottom:6px;font-size:28px;text-shadow:0 0 12px #7c3aed}
 .tags{color:#94a3b8;margin-bottom:16px}
-
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-
 .card{
   background:#020617;border-radius:16px;padding:10px;
   border:1px solid rgba(124,58,237,.3);
@@ -72,15 +87,13 @@ h2{margin-bottom:6px;font-size:28px;text-shadow:0 0 12px #7c3aed}
   transition:.25s;
 }
 .card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 0 40px #7c3aed}
-
 iframe{width:100%;aspect-ratio:16/9;border-radius:12px;border:none}
-
 .fortnite h2{color:var(--fortnite)}
 .cs h2{color:var(--cs)}
 .music h2{color:var(--music)}
-
 footer{text-align:center;padding:40px;color:#94a3b8}
 
+/* Snow */
 .snowflake{
   position:fixed;top:-10px;color:#7dd3fc;
   animation:fall linear infinite;pointer-events:none;
@@ -90,6 +103,14 @@ footer{text-align:center;padding:40px;color:#94a3b8}
 </style>
 </head>
 <body>
+
+<!-- LOADING -->
+<div id="loading">
+  <div class="loader">
+    🎮 Gaming Hub
+    <span>Loading...</span>
+  </div>
+</div>
 
 <audio id="bgMusic" src="https://cdn.pixabay.com/audio/2022/10/03/audio_7f3a4b7b65.mp3" loop></audio>
 
@@ -150,9 +171,17 @@ footer{text-align:center;padding:40px;color:#94a3b8}
 const music=document.getElementById("bgMusic");
 music.volume=0.15;
 
-window.addEventListener("click",()=>{if(music.paused)music.play()},{once:true});
-function toggleMusic(){music.paused?music.play():music.pause();}
+window.addEventListener("click",()=>{ if(music.paused) music.play(); },{once:true});
+function toggleMusic(){ music.paused ? music.play() : music.pause(); }
 
+// Loading hide
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("loading").classList.add("hide");
+  }, 900);
+});
+
+// Snow
 function snow(){
   const s=document.createElement("div");
   s.className="snowflake"; s.innerHTML="❄";
@@ -167,6 +196,7 @@ setInterval(snow,200);
 
 </body>
 </html>
+
 
 
 
