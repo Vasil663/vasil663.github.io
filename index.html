@@ -71,6 +71,7 @@ header,main,footer{position:relative;z-index:1}
     <div class="logoMark"><span>T</span></div>
     <div class="logoText">TITAN GAMING</div>
     <div class="logoSub">Добре дошъл в сървъра</div>
+    <button class="btn" onclick="unmuteAndPlay()"><span>🔊 Включи звук</span></button>
   </div>
 </div>
 
@@ -160,8 +161,15 @@ document.addEventListener('mousemove', e=>{
 let t;
 function playYT(){
   const f=document.getElementById('ytplayer');
+  f.src="https://www.youtube.com/embed/29T7I5-0P5w?autoplay=1&mute=1";
+  clearTimeout(t); 
+  t=setTimeout(()=>{f.src="";},60000);
+}
+function unmuteAndPlay(){
+  const f=document.getElementById('ytplayer');
   f.src="https://www.youtube.com/embed/29T7I5-0P5w?autoplay=1";
-  clearTimeout(t); t=setTimeout(()=>{f.src="";},60000);
+  clearTimeout(t);
+  t=setTimeout(()=>{f.src="";},60000);
 }
 
 function showRules(){
@@ -172,12 +180,14 @@ function showRules(){
 function hideRules(){ document.getElementById('rulesPanel').classList.remove('show'); }
 
 window.addEventListener('load', ()=>{
-  setTimeout(()=>{ document.getElementById('logoIntro').style.display='none'; }, 60000);
+  setTimeout(()=>{ document.getElementById('logoIntro').style.display='none'; }, 20000); // 20 сек
   setTimeout(showRules, 1200);
+  setTimeout(playYT, 1000); // auto (mute)
 });
 </script>
 </body>
 </html>
+
 
 
 
