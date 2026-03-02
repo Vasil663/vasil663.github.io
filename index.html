@@ -38,10 +38,20 @@
       border:0; cursor:pointer; font-weight:800;
       padding:12px 22px; border-radius:999px;
       background:#38bdf8; color:#020617;
+      position:relative; overflow:hidden;
       box-shadow:0 0 20px rgba(56,189,248,.5);
-      transition:.15s; position:relative; overflow:hidden;
+      transition:.15s;
     }
-    .btn:hover{transform:translateY(-2px) scale(1.05); box-shadow:0 0 30px rgba(56,189,248,.9)}
+    .btn::before{
+      content:""; position:absolute; inset:-2px; border-radius:inherit;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.7), transparent 70%);
+      transform: translateX(-120%); transition: transform .6s ease; pointer-events:none;
+    }
+    .btn:hover{
+      transform: translateY(-2px) scale(1.06);
+      box-shadow:0 0 35px rgba(56,189,248,.95), 0 0 80px rgba(56,189,248,.35);
+    }
+    .btn:hover::before{ transform: translateX(120%); }
 
     .wrap{max-width:1100px; margin:0 auto; padding:24px}
     .card{
@@ -60,6 +70,14 @@
     .particle{position:absolute; width:2px; height:2px; background:rgba(56,189,248,.7); border-radius:50%; animation: drift linear infinite}
     @keyframes drift{from{transform:translateY(100vh);opacity:.2}to{transform:translateY(-10vh);opacity:.8}}
     header, main, footer{position:relative; z-index:1}
+
+    /* ripple */
+    .ripple{
+      position:absolute; border-radius:50%;
+      transform:scale(0); animation:ripple .6s linear;
+      background: rgba(255,255,255,.5); pointer-events:none;
+    }
+    @keyframes ripple{to{transform:scale(4); opacity:0}}
   </style>
 </head>
 <body>
@@ -134,6 +152,21 @@
       box.appendChild(p);
     }
 
+    // ripple on buttons
+    document.querySelectorAll('.btn').forEach(btn=>{
+      btn.addEventListener('click', e=>{
+        const r=document.createElement('span');
+        r.className='ripple';
+        const rect=btn.getBoundingClientRect();
+        const size=Math.max(rect.width, rect.height);
+        r.style.width=r.style.height=size+'px';
+        r.style.left=(e.clientX-rect.left-size/2)+'px';
+        r.style.top =(e.clientY-rect.top -size/2)+'px';
+        btn.appendChild(r);
+        setTimeout(()=>r.remove(),600);
+      });
+    });
+
     // YouTube 1 min
     let t;
     function playYT(){
@@ -148,4 +181,3 @@
   </script>
 </body>
 </html>
-
