@@ -1,71 +1,136 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Gaming Hub</title>
   <style>
-    body { margin:0; font-family: Arial, sans-serif; background:#0f172a; color:#e5e7eb; }
-    header { background:#020617; padding:20px; text-align:center; }
-    nav a { color:#38bdf8; margin:0 10px; text-decoration:none; font-weight:bold; }
-    section { padding:40px; max-width:1000px; margin:auto; }
-    .card { background:#020617; padding:20px; border-radius:12px; margin-bottom:20px; }
-    footer { text-align:center; padding:20px; background:#020617; color:#94a3b8; }
-    iframe { max-width:100%; border-radius:12px; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #0a0f2c, #020617);
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    nav a {
+      color: #00c3ff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 40px;
+      box-shadow: 0 0 20px rgba(0, 195, 255, 0.2);
+    }
+
+    .card h1 {
+      margin-bottom: 10px;
+    }
+
+    .video {
+      margin-top: 20px;
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .video iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      opacity: 0.6;
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>🎮 Gaming Hub</h1>
-  <nav>
-    <a href="#fortnite">Fortnite</a>
-    <a href="#cs">CS</a>
-    <a href="#news">Новини</a>
-  </nav>
-</header>
+  <header>
+    <nav>
+      <a href="#fortnite">Fortnite</a>
+      <a href="#cs">CS</a>
+      <a href="#news">Новини</a>
+    </nav>
+  </header>
 
-<section id="fortnite">
-  <div class="card">
-    <h2>Fortnite</h2>
-    <p>Тук ще качвам гайдове, сетъпи и клипове за Fortnite.</p>
+  <main>
 
-    <!-- Fortnite клип -->
-    <iframe width="560" height="315"
-      src="https://www.youtube.com/embed/mZtzYLoFN7Y"
-      title="Fortnite video"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
-</section>
+    <section id="fortnite" class="card">
+      <h1>Fortnite</h1>
+      <p>Тук ще качвам гайдове, сетъпи и клипове за Fortnite.</p>
 
-<section id="cs">
-  <div class="card">
-    <h2>CS</h2>
-    <p>Тук ще качвам тактики, смокове и хайлайтове за CS.</p>
+      <div class="video">
+        <iframe 
+          src="https://www.youtube.com/embed/pV3Wa5qkJ8w"
+          title="Fortnite video"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
 
-    <!-- CS клип -->
-    <iframe width="560" height="315"
-      src="https://www.youtube.com/embed/pV3Wa5qkJ8w"
-      title="CS video"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
-</section>
+    <section id="cs" class="card">
+      <h1>CS</h1>
+      <p>Тук ще качвам тактики, смокове и хайлайтове за CS.</p>
 
-<section id="news">
-  <div class="card">
-    <h2>Новини</h2>
-    <p>Последни ъпдейти и пачове за любимите игри.</p>
-  </div>
-</section>
+      <div class="video">
+        <iframe 
+          src="https://www.youtube.com/embed/5dAdSchbwko"
+          title="CS video 1"
+          allowfullscreen>
+        </iframe>
+      </div>
 
-<footer>
-  © 2026 Gaming Hub
-</footer>
+      <div class="video">
+        <iframe 
+          src="https://www.youtube.com/embed/GOz0pPX9tvA"
+          title="CS video 2"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <section id="news" class="card">
+      <h1>Новини</h1>
+      <p>Тук ще добавям новини за игри скоро.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Gaming Hub
+  </footer>
 
 </body>
 </html>
