@@ -1,151 +1,163 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="bg">
 <head>
   <meta charset="UTF-8" />
   <title>Gaming Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #0b1224, #050a16 70%);
-      color: #e5e7eb;
-      overflow-x: hidden;
+    :root {
+      --bg1: #020617;
+      --bg2: #020a2a;
+      --card: #020b1f;
+      --glow: #7c3aed;
+      --fortnite: #22d3ee;
+      --cs: #22c55e;
+      --music: #e879f9;
     }
 
-    /* Header */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, Arial, sans-serif;
+      background: radial-gradient(circle at top, #020a2a, #020617 70%);
+      color: #e5e7eb;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
     header {
-      background: linear-gradient(180deg, #020617, #020617cc);
-      padding: 24px 20px 16px;
-      text-align: center;
       position: sticky;
       top: 0;
       z-index: 10;
-      backdrop-filter: blur(6px);
-    }
-    .logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-    }
-    .logo img {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      box-shadow: 0 0 16px #38bdf8;
+      backdrop-filter: blur(10px);
+      background: rgba(2, 6, 23, 0.75);
+      border-bottom: 1px solid rgba(124,58,237,0.3);
     }
 
-    nav {
-      margin-top: 10px;
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
     }
-    nav a {
-      margin: 0 10px;
-      padding: 8px 14px;
-      color: #38bdf8;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      font-size: 22px;
+      color: #c4b5fd;
+      text-shadow: 0 0 12px rgba(124,58,237,0.9);
+    }
+
+    .menu a {
+      margin-left: 14px;
       text-decoration: none;
+      color: #cbd5f5;
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: 0.2s;
       font-weight: 700;
-      border-radius: 999px;
-      border: 1px solid #1f2933;
-      transition: 0.2s ease;
-      box-shadow: 0 0 0 rgba(56,189,248,0.0);
     }
-    nav a:hover {
-      background: #020617;
-      box-shadow: 0 0 18px rgba(56,189,248,0.9), inset 0 0 12px rgba(56,189,248,0.3);
-      transform: translateY(-1px);
+
+    .menu a:hover {
+      background: rgba(124,58,237,0.18);
+      box-shadow: 0 0 14px rgba(124,58,237,0.7);
+      color: white;
     }
 
     main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 16px 80px;
+      max-width: 1200px;
+      margin: 40px auto 100px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
     }
 
     section {
-      margin-bottom: 32px;
+      background: linear-gradient(180deg, rgba(2,11,31,0.95), rgba(2,6,23,0.95));
+      border-radius: 18px;
+      padding: 24px;
+      border: 1px solid rgba(124,58,237,0.25);
+      box-shadow: 0 0 40px rgba(124,58,237,0.2);
+      position: relative;
+      overflow: hidden;
     }
 
-    .card {
-      background: linear-gradient(180deg, #020617, #020617cc);
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(148,163,184,0.12);
+    section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(124,58,237,0.2), transparent 60%);
+      pointer-events: none;
     }
 
     h2 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      letter-spacing: 0.3px;
+      margin-bottom: 6px;
+      font-size: 28px;
+      text-shadow: 0 0 14px rgba(124,58,237,0.7);
     }
-
-    .fortnite h2 { color: #60a5fa; }
-    .cs h2 { color: #22c55e; }
-    .rules h2 { color: #f59e0b; }
 
     .tags {
-      opacity: 0.8;
+      color: #94a3b8;
+      margin-bottom: 16px;
       font-size: 14px;
-      margin-bottom: 10px;
     }
 
-    .video-wrap {
-      margin-top: 14px;
-      position: relative;
-      padding-top: 56.25%;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 30px rgba(56,189,248,0.35);
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
     }
-    .cs .video-wrap {
-      box-shadow: 0 0 30px rgba(34,197,94,0.45);
+
+    .card {
+      background: linear-gradient(180deg, #020b1f, #020617);
+      border-radius: 16px;
+      padding: 10px;
+      border: 1px solid rgba(124,58,237,0.3);
+      box-shadow: 0 0 24px rgba(124,58,237,0.35);
+      transition: 0.25s;
     }
-    .video-wrap iframe {
-      position: absolute;
-      inset: 0;
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 0 40px rgba(124,58,237,0.8);
+    }
+
+    iframe {
       width: 100%;
-      height: 100%;
-      border: 0;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      border: none;
     }
+
+    .fortnite h2 { color: var(--fortnite); }
+    .cs h2 { color: var(--cs); }
+    .music h2 { color: var(--music); }
 
     footer {
       text-align: center;
-      padding: 24px 10px;
-      background: #020617;
+      padding: 40px 10px;
       color: #94a3b8;
-      box-shadow: inset 0 1px 0 rgba(148,163,184,0.12);
-    }
-
-    .discord {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      background: #5865F2;
-      box-shadow: 0 0 20px rgba(88,101,242,0.6);
-      transition: 0.2s ease;
-    }
-    .discord:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 28px rgba(88,101,242,0.9);
     }
 
     /* Snow */
     .snowflake {
       position: fixed;
       top: -10px;
-      color: #93c5fd;
+      color: #7dd3fc;
       font-size: 14px;
       user-select: none;
       pointer-events: none;
       animation: fall linear infinite;
-      text-shadow: 0 0 10px rgba(147,197,253,0.9);
+      text-shadow: 0 0 8px rgba(125,211,252,0.9);
+      z-index: 999;
     }
+
     @keyframes fall {
       to { transform: translateY(110vh); }
     }
@@ -153,106 +165,89 @@
 </head>
 <body>
 
-  <!-- Snowflakes -->
-  <div class="snowflake" style="left:5%; animation-duration: 9s;">❄</div>
-  <div class="snowflake" style="left:15%; animation-duration: 12s;">❄</div>
-  <div class="snowflake" style="left:30%; animation-duration: 10s;">❄</div>
-  <div class="snowflake" style="left:45%; animation-duration: 14s;">❄</div>
-  <div class="snowflake" style="left:60%; animation-duration: 11s;">❄</div>
-  <div class="snowflake" style="left:75%; animation-duration: 13s;">❄</div>
-  <div class="snowflake" style="left:90%; animation-duration: 9s;">❄</div>
-
-  <header>
-    <div class="logo">
-      <!-- Можеш да сложиш твое лого URL тук -->
-      <img src="https://i.imgur.com/0y0y0y0.png" alt="Logo" />
-      <span>🎮 Gaming Hub</span>
-    </div>
-    <nav>
+<header>
+  <div class="nav">
+    <div class="logo">🎮 Gaming Hub</div>
+    <nav class="menu">
       <a href="#fortnite">Fortnite</a>
       <a href="#cs">CS</a>
+      <a href="#music">Music</a>
       <a href="#rules">Правила</a>
-      <a href="#discord">Discord</a>
+      <a href="https://discord.gg/TVOQ-LINK" target="_blank">Discord</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main>
-    <!-- Fortnite -->
-    <section id="fortnite" class="fortnite">
+<main>
+  <section id="fortnite" class="fortnite">
+    <h2>Fortnite</h2>
+    <div class="tags">#highlights #tips #pro</div>
+    <div class="grid">
       <div class="card">
-        <h2>Fortnite</h2>
-        <div class="tags">#highlights #tips #builds</div>
-        <p>Тук ще качвам гайдове, сетъпи и клипове за Fortnite.</p>
-
-        <div class="video-wrap">
-          <iframe 
-            src="https://www.youtube.com/embed/pV3Wa5qkJ8w"
-            title="Fortnite video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
+        <iframe src="https://www.youtube.com/embed/pV3Wa5qkJ8w" allowfullscreen></iframe>
       </div>
-    </section>
-
-    <!-- CS -->
-    <section id="cs" class="cs">
       <div class="card">
-        <h2>CS</h2>
-        <div class="tags">#smokes #aim #highlights</div>
-        <p>Тук ще качвам тактики, смоукове и хайлайтове за CS.</p>
-
-        <div class="video-wrap">
-          <iframe 
-            src="https://www.youtube.com/embed/GOz0pPX9tvA"
-            title="CS video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
+        <iframe src="https://www.youtube.com/embed/GOz0pPX9tvA" allowfullscreen></iframe>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Rules -->
-    <section id="rules" class="rules">
+  <section id="cs" class="cs">
+    <h2>CS</h2>
+    <div class="tags">#smokes #tactics #highlights</div>
+    <div class="grid">
       <div class="card">
-        <h2>Правила</h2>
-        <ul>
-          <li>❌ Без спам и обиди</li>
-          <li>🎮 Само гейминг съдържание</li>
-          <li>🤝 Уважавай другите</li>
-          <li>🚫 Без хакове и измами</li>
-        </ul>
+        <iframe src="https://www.youtube.com/embed/5dAdSchbwko" allowfullscreen></iframe>
       </div>
-    </section>
-
-    <!-- Discord -->
-    <section id="discord">
       <div class="card">
-        <h2>Discord</h2>
-        <p>Влез в нашия Discord сървър:</p>
-        <a class="discord" href="https://discord.gg/TVOQ_DISCORD_LINK" target="_blank">
-          Влез в Discord
-        </a>
+        <iframe src="https://www.youtube.com/embed/pV3Wa5qkJ8w" allowfullscreen></iframe>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    © 2026 Gaming Hub
-  </footer>
+  <section id="music" class="music">
+    <h2>Music</h2>
+    <div class="tags">#playlist #vibes</div>
+    <div class="grid">
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/zoa8xnzKC_U" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
 
-  <!-- Background music (autoplay muted) -->
-  <iframe 
-    width="0" 
-    height="0"
-    src="https://www.youtube.com/embed/zoa8xnzKC_U?autoplay=1&mute=1&loop=1&playlist=zoa8xnzKC_U"
-    allow="autoplay"
-    style="display:none;">
-  </iframe>
+  <section id="rules">
+    <h2>Правила</h2>
+    <ul style="line-height:1.8; color:#cbd5f5;">
+      <li>❌ Без спам</li>
+      <li>❌ Без обиди</li>
+      <li>✅ Уважение към всички</li>
+      <li>✅ Само gaming съдържание</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  © 2026 Gaming Hub • Made with 🔥
+</footer>
+
+<script>
+  function createSnow() {
+    const snow = document.createElement("div");
+    snow.className = "snowflake";
+    snow.innerHTML = "❄";
+    snow.style.left = Math.random() * window.innerWidth + "px";
+    snow.style.animationDuration = 5 + Math.random() * 6 + "s";
+    snow.style.opacity = Math.random();
+    snow.style.fontSize = 10 + Math.random() * 16 + "px";
+    document.body.appendChild(snow);
+    setTimeout(() => snow.remove(), 11000);
+  }
+  setInterval(createSnow, 200);
+</script>
 
 </body>
 </html>
+
 
 
 
