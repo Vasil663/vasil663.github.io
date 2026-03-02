@@ -7,7 +7,6 @@
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: Arial, sans-serif;
       background: radial-gradient(circle at top, #0b1025, #020617 60%);
@@ -26,11 +25,7 @@
       justify-content: space-between;
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 20px;
-      color: #38bdf8;
-    }
+    .logo { font-weight: bold; font-size: 20px; color: #38bdf8; }
 
     nav a {
       color: #e5e7eb;
@@ -38,24 +33,28 @@
       text-decoration: none;
       font-weight: 600;
     }
-
-    nav a:hover {
-      color: #38bdf8;
-    }
+    nav a:hover { color: #38bdf8; }
 
     .hero {
       text-align: center;
-      padding: 90px 20px 70px;
+      padding: 110px 20px 90px;
     }
 
-    .hero h1 {
-      font-size: 36px;
+    .welcome {
+      font-size: 44px;
       margin-bottom: 10px;
+      animation: glow 2s ease-in-out infinite alternate;
     }
 
-    .hero p {
-      opacity: 0.85;
-      margin-bottom: 18px;
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(56,189,248,.3); }
+      to   { text-shadow: 0 0 30px rgba(56,189,248,.9); }
+    }
+
+    .subtitle {
+      opacity: 0.9;
+      margin-bottom: 22px;
+      font-size: 18px;
     }
 
     .btn {
@@ -68,12 +67,15 @@
       text-decoration: none;
       box-shadow: 0 0 20px rgba(56,189,248,.5);
       transition: transform .15s ease, box-shadow .15s ease;
+      cursor: pointer;
+      border: none;
     }
-
     .btn:hover {
       transform: scale(1.05);
       box-shadow: 0 0 30px rgba(56,189,248,.9);
     }
+
+    .controls { margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 
     .section {
       max-width: 1000px;
@@ -83,11 +85,7 @@
       border-radius: 14px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
-
-    .section h2 {
-      margin-bottom: 8px;
-      color: #38bdf8;
-    }
+    .section h2 { color: #38bdf8; margin-bottom: 8px; }
 
     .rules {
       max-width: 700px;
@@ -97,22 +95,12 @@
       border-radius: 12px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
-
-    .rules h2 {
-      margin-bottom: 12px;
-      text-align: center;
-      color: #38bdf8;
-    }
-
-    .rules ul { list-style: none; padding: 0; }
+    .rules h2 { text-align: center; color: #38bdf8; margin-bottom: 12px; }
+    .rules ul { list-style: none; }
     .rules li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
     .rules li:last-child { border-bottom: none; }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      opacity: 0.7;
-    }
+    footer { text-align: center; padding: 20px; opacity: 0.7; }
   </style>
 </head>
 <body>
@@ -129,9 +117,13 @@
 
   <main id="top">
     <section class="hero">
-      <h1>Всичко за Fortnite и CS</h1>
-      <p>Новини, гайдове, ъпдейти и гейминг общност.</p>
-      <a class="btn" href="#fortnite">Виж гайдове</a>
+      <h1 class="welcome">Добре дошъл в GameZone</h1>
+      <p class="subtitle">Хайлайтове, гайдове и яки клипове за Fortnite и CS</p>
+      <div class="controls">
+        <button class="btn" onclick="playYT()">▶ Пусни музика (1 минута)</button>
+        <button class="btn" onclick="stopYT()">⏸ Спри музиката</button>
+        <a class="btn" href="#fortnite">Влизай</a>
+      </div>
     </section>
 
     <section id="fortnite" class="section">
@@ -159,5 +151,26 @@
   <footer id="contact">
     <p>© 2026 GameZone. Всички права запазени.</p>
   </footer>
+
+  <!-- Скрит YouTube плеър за музика (1 минута) -->
+  <iframe id="ytplayer" width="0" height="0" style="display:none" allow="autoplay"></iframe>
+
+  <script>
+    let timer;
+    function playYT() {
+      const iframe = document.getElementById('ytplayer');
+      iframe.src = "https://www.youtube.com/embed/29T7I5-0P5w?autoplay=1";
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        stopYT();
+      }, 60000); // 1 минута
+    }
+    function stopYT() {
+      const iframe = document.getElementById('ytplayer');
+      iframe.src = "";
+      clearTimeout(timer);
+    }
+  </script>
 </body>
 </html>
+
