@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="bg">
 <head>
   <meta charset="UTF-8" />
@@ -8,36 +7,55 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0f172a;
+      background: linear-gradient(180deg, #020617, #0f172a);
       color: #e5e7eb;
     }
+
     header {
       background: #020617;
-      padding: 20px;
+      padding: 24px;
       text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
+
     nav a {
       color: #38bdf8;
-      margin: 0 10px;
+      margin: 0 12px;
       text-decoration: none;
       font-weight: bold;
     }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
     section {
-      padding: 40px;
-      max-width: 1000px;
+      padding: 40px 20px;
+      max-width: 1100px;
       margin: auto;
     }
+
     .card {
       background: #020617;
-      padding: 20px;
-      border-radius: 12px;
+      padding: 24px;
+      border-radius: 14px;
       margin-bottom: 40px;
-      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
     iframe {
-      max-width: 100%;
+      width: 100%;
+      max-width: 720px;
+      height: 405px;
       border-radius: 12px;
+      display: block;
+      margin: 20px auto 0;
     }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -46,59 +64,52 @@
     }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>🎮 Gaming Hub</h1>
-    <nav>
-      <a href="#fortnite">Fortnite</a>
-      <a href="#cs">CS</a>
-      <a href="#news">Новини</a>
-    </nav>
-  </header>
+<header>
+  <h1>🎮 Gaming Hub</h1>
+  <nav>
+    <a href="#fortnite">Fortnite</a>
+    <a href="#cs">CS</a>
+    <a href="#news">Новини</a>
+  </nav>
+</header>
 
-  <section id="fortnite">
-    <div class="card">
-      <h2>Fortnite</h2>
-      <p>Тук ще качвам гайдове, сетъпи и клипове за Fortnite.</p>
+<section id="fortnite">
+  <div class="card">
+    <h2>Fortnite</h2>
+    <p>Тук ще качвам гайдове, сетъпи и клипове за Fortnite.</p>
+    <iframe 
+      src="https://www.youtube.com/embed/pV3Wa5qkJ8w" 
+      title="Fortnite видео"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
 
-      <!-- Fortnite video -->
-      <iframe width="560" height="315"
-        src="https://www.youtube.com/embed/pV3Wa5qkJ8w"
-        title="Fortnite video"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
+<section id="cs">
+  <div class="card">
+    <h2>CS</h2>
+    <p>Тук ще качвам тактики, смокове и хайлайтове за CS.</p>
+    <iframe 
+      src="https://www.youtube.com/embed/5dAdSchbwko" 
+      title="CS видео"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
 
-  <section id="cs">
-    <div class="card">
-      <h2>CS</h2>
-      <p>Тук ще качвам тактики, смокове и хайлайтове от CS.</p>
+<section id="news">
+  <div class="card">
+    <h2>Новини</h2>
+    <p>Последни ъпдейти и пачове за любимите игри.</p>
+  </div>
+</section>
 
-      <!-- CS video -->
-      <iframe width="560" height="315"
-        src="https://www.youtube.com/embed/5dAdSchbwko"
-        title="CS video"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
-
-  <section id="news">
-    <div class="card">
-      <h2>Новини</h2>
-      <p>Последни ъпдейти и пачове за любимите игри.</p>
-    </div>
-  </section>
-
-  <footer>
-    © 2026 Gaming Hub
-  </footer>
+<footer>
+  © 2026 Gaming Hub
+</footer>
 
 </body>
 </html>
