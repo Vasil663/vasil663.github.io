@@ -1,10 +1,85 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="bg">
 <head>
   <meta charset="UTF-8" />
   <title>Gaming Hub</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #020617, #0f172a);
+      color: #e5e7eb;
+    }
+
+    header {
+      background: #020617;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    header h1 {
+      margin-bottom: 10px;
+    }
+
+    nav a {
+      color: #38bdf8;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .card {
+      background: #020617;
+      padding: 30px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 800px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      margin-bottom: 20px;
+      color: #cbd5f5;
+    }
+
+    iframe {
+      width: 100%;
+      height: 315px;
+      border-radius: 12px;
+      border: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      opacity: 0.7;
+    }
+  </style>
 </head>
 <body>
 
@@ -23,11 +98,8 @@
         <h2>Fortnite</h2>
         <p>Тук ще качвам гайдове, сетъпи и клипове за Fortnite.</p>
 
-        <iframe width="560" height="315"
+        <iframe 
           src="https://www.youtube.com/embed/mZtzYLoFN7Y"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
       </div>
@@ -38,11 +110,8 @@
         <h2>CS</h2>
         <p>Тук ще качвам тактики, смокове и хайлайтове от CS.</p>
 
-        <iframe width="560" height="315"
+        <iframe 
           src="https://www.youtube.com/embed/5dAdSchbwko"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
       </div>
@@ -60,6 +129,5 @@
     <p>© 2026 Gaming Hub</p>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
