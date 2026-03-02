@@ -4,13 +4,122 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GameZone</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #0b1025, #020617 60%);
+      color: #e5e7eb;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(2,6,23,0.9);
+      backdrop-filter: blur(8px);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
+      color: #38bdf8;
+    }
+
+    nav a {
+      color: #e5e7eb;
+      margin-left: 16px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 90px 20px 70px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: #38bdf8;
+      color: #020617;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(56,189,248,.5);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(56,189,248,.9);
+    }
+
+    .section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 24px;
+      background: #0f172a;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .section h2 {
+      margin-bottom: 8px;
+      color: #38bdf8;
+    }
+
+    .rules {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px 24px;
+      background: #0f172a;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .rules h2 {
+      margin-bottom: 12px;
+      text-align: center;
+      color: #38bdf8;
+    }
+
+    .rules ul { list-style: none; padding: 0; }
+    .rules li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .rules li:last-child { border-bottom: none; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      opacity: 0.7;
+    }
+  </style>
 </head>
 <body>
-  <header class="header">
+  <header>
     <div class="logo">🎮 GameZone</div>
     <nav>
-      <a href="#">Начало</a>
+      <a href="#top">Начало</a>
       <a href="#fortnite">Fortnite</a>
       <a href="#cs">CS</a>
       <a href="#rules">Правила</a>
@@ -18,34 +127,36 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>Всичко за Fortnite и CS</h1>
-    <p>Новини, гайдове, ъпдейти и гейминг общност.</p>
-    <a class="btn" href="#fortnite">Виж гайдове</a>
-  </section>
+  <main id="top">
+    <section class="hero">
+      <h1>Всичко за Fortnite и CS</h1>
+      <p>Новини, гайдове, ъпдейти и гейминг общност.</p>
+      <a class="btn" href="#fortnite">Виж гайдове</a>
+    </section>
 
-  <section id="fortnite" class="section">
-    <h2>🔥 Fortnite</h2>
-    <p>Карти, оръжия, скинове и съвети.</p>
-  </section>
+    <section id="fortnite" class="section">
+      <h2>🔥 Fortnite</h2>
+      <p>Карти, оръжия, скинове и съвети.</p>
+    </section>
 
-  <section id="cs" class="section">
-    <h2>💣 CS</h2>
-    <p>Смоукове, тактики и ъпдейти.</p>
-  </section>
+    <section id="cs" class="section">
+      <h2>💣 CS</h2>
+      <p>Смоукове, тактики и ъпдейти.</p>
+    </section>
 
-  <section id="rules" class="rules">
-    <h2>📜 Правила</h2>
-    <ul>
-      <li>Без обиди, хейт и токсично поведение.</li>
-      <li>Без чийтове и хакове.</li>
-      <li>Без спам и реклами без разрешение.</li>
-      <li>Без лични данни.</li>
-      <li>Нарушенията водят до бан.</li>
-    </ul>
-  </section>
+    <section id="rules" class="rules">
+      <h2>📜 Правила</h2>
+      <ul>
+        <li>Без обиди, хейт и токсично поведение.</li>
+        <li>Без чийтове и хакове.</li>
+        <li>Без спам и реклами без разрешение.</li>
+        <li>Без лични данни.</li>
+        <li>Нарушенията водят до бан.</li>
+      </ul>
+    </section>
+  </main>
 
-  <footer class="footer" id="contact">
+  <footer id="contact">
     <p>© 2026 GameZone. Всички права запазени.</p>
   </footer>
 </body>
