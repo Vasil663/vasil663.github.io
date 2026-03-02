@@ -1,183 +1,122 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GameZone</title>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family: system-ui, Arial, sans-serif;
-      background: radial-gradient(circle at top, #0b1025, #020617 60%);
-      color:#e5e7eb; overflow-x:hidden;
-    }
-    header{
-      position:sticky; top:0; z-index:10;
-      background:rgba(2,6,23,.85); backdrop-filter: blur(8px);
-      padding:14px 20px; display:flex; justify-content:space-between; align-items:center;
-      animation: drop .7s ease both;
-    }
-    @keyframes drop{from{transform:translateY(-20px);opacity:0}to{transform:none;opacity:1}}
-    .logo{font-weight:900; color:#38bdf8}
-    nav a{color:#e5e7eb; margin-left:14px; text-decoration:none; font-weight:700; position:relative}
-    nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:#38bdf8;transition:.2s}
-    nav a:hover::after{width:100%}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GameZone</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,Arial,sans-serif;color:#e5e7eb;overflow-x:hidden;background:radial-gradient(circle at top,#0b1025,#020617 60%)}
+header{position:sticky;top:0;z-index:10;background:rgba(2,6,23,.75);backdrop-filter:blur(10px);padding:12px 18px;display:flex;justify-content:space-between;align-items:center}
+nav a{color:#e5e7eb;margin-left:14px;text-decoration:none;font-weight:800}
 
-    .hero{min-height:85vh; display:grid; place-items:center; text-align:center; padding:80px 16px}
-    .welcome{
-      font-size:44px; margin-bottom:10px;
-      animation: glow 2s ease-in-out infinite alternate, float 3s ease-in-out infinite;
-    }
-    @keyframes glow{from{text-shadow:0 0 10px rgba(56,189,248,.3)}to{text-shadow:0 0 30px rgba(56,189,248,.9)}}
-    @keyframes float{50%{transform:translateY(-6px)}}
-    .subtitle{opacity:.9; margin-bottom:20px; animation: fadeUp .8s ease .2s both}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.parallax{position:fixed;inset:0;z-index:-1;background:
+radial-gradient(600px 300px at 20% 10%, rgba(56,189,248,.15), transparent 60%),
+radial-gradient(500px 300px at 80% 20%, rgba(167,139,250,.12), transparent 60%),
+linear-gradient(#020617,#020617)}
 
-    .controls{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
-    .btn{
-      border:0; cursor:pointer; font-weight:800;
-      padding:12px 22px; border-radius:999px;
-      background:#38bdf8; color:#020617;
-      position:relative; overflow:hidden;
-      box-shadow:0 0 20px rgba(56,189,248,.5);
-      transition:.15s;
-    }
-    .btn::before{
-      content:""; position:absolute; inset:-2px; border-radius:inherit;
-      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.7), transparent 70%);
-      transform: translateX(-120%); transition: transform .6s ease; pointer-events:none;
-    }
-    .btn:hover{
-      transform: translateY(-2px) scale(1.06);
-      box-shadow:0 0 35px rgba(56,189,248,.95), 0 0 80px rgba(56,189,248,.35);
-    }
-    .btn:hover::before{ transform: translateX(120%); }
+.hero{min-height:90vh;display:grid;place-items:center;text-align:center;padding:90px 16px}
+.welcome{font-size:46px;margin-bottom:10px;animation:glow 2s ease-in-out infinite alternate,float 3s ease-in-out infinite}
+@keyframes glow{from{text-shadow:0 0 10px rgba(56,189,248,.3)}to{text-shadow:0 0 35px rgba(56,189,248,.95)}}
+@keyframes float{50%{transform:translateY(-6px)}}
+.subtitle{opacity:.9;margin-bottom:22px}
 
-    .wrap{max-width:1100px; margin:0 auto; padding:24px}
-    .card{
-      background:#0f172a; border-radius:16px; padding:22px; margin:18px 0;
-      box-shadow:0 10px 25px rgba(0,0,0,.45);
-      opacity:0; transform:translateY(20px) scale(.98);
-      transition:.6s;
-    }
-    .card.show{opacity:1; transform:none}
-    .card:hover{transform:translateY(-6px) scale(1.01)}
+.btn{--c1:#ff00ff;--c2:#00ffff;--c3:#00ff00;border:0;cursor:pointer;font-weight:900;padding:14px 26px;border-radius:999px;background:#0b1025;color:#e5e7eb;position:relative;overflow:hidden}
+.btn::before{content:"";position:absolute;inset:-2px;border-radius:inherit;background:linear-gradient(120deg,var(--c1),var(--c2),var(--c3),var(--c1));filter:blur(10px);animation:rgb 3s linear infinite}
+.btn::after{content:"";position:absolute;inset:2px;border-radius:inherit;background:#0b1025}
+.btn span{position:relative;z-index:1}
+@keyframes rgb{to{filter:hue-rotate(360deg)}}
 
-    footer{opacity:.7; text-align:center; padding:24px}
+.wrap{max-width:1100px;margin:0 auto;padding:24px}
+.card{background:rgba(15,23,42,.55);backdrop-filter:blur(12px);border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 10px 25px rgba(0,0,0,.45);opacity:0;transform:translateY(20px) scale(.98);transition:.6s}
+.card.show{opacity:1;transform:none}
 
-    /* particles */
-    .particles{position:fixed; inset:0; pointer-events:none; z-index:0}
-    .particle{position:absolute; width:2px; height:2px; background:rgba(56,189,248,.7); border-radius:50%; animation: drift linear infinite}
-    @keyframes drift{from{transform:translateY(100vh);opacity:.2}to{transform:translateY(-10vh);opacity:.8}}
-    header, main, footer{position:relative; z-index:1}
+.video{width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.6)}
 
-    /* ripple */
-    .ripple{
-      position:absolute; border-radius:50%;
-      transform:scale(0); animation:ripple .6s linear;
-      background: rgba(255,255,255,.5); pointer-events:none;
-    }
-    @keyframes ripple{to{transform:scale(4); opacity:0}}
-  </style>
+.particles{position:fixed;inset:0;pointer-events:none;z-index:0}
+.particle{position:absolute;width:2px;height:2px;background:rgba(56,189,248,.7);border-radius:50%;animation:drift linear infinite}
+@keyframes drift{from{transform:translateY(100vh)}to{transform:translateY(-10vh)}}
+
+footer{opacity:.7;text-align:center;padding:24px}
+header,main,footer{position:relative;z-index:1}
+</style>
 </head>
 <body>
-  <div class="particles" id="particles"></div>
+<div class="parallax" id="parallax"></div>
+<div class="particles" id="particles"></div>
 
-  <header>
-    <div class="logo">🎮 GameZone</div>
-    <nav>
-      <a href="#top">Начало</a>
-      <a href="#fortnite">Fortnite</a>
-      <a href="#cs">CS</a>
-      <a href="#rules">Правила</a>
-    </nav>
-  </header>
+<header>
+  <strong>🎮 GameZone</strong>
+  <nav>
+    <a href="#top">Начало</a>
+    <a href="#fortnite">Fortnite</a>
+    <a href="#cs">CS</a>
+  </nav>
+</header>
 
-  <main id="top">
-    <section class="hero">
-      <div>
-        <h1 class="welcome">Добре дошъл в GameZone</h1>
-        <p class="subtitle">Яки клипове, гайдове и трикове за Fortnite и CS</p>
-        <div class="controls">
-          <button class="btn" onclick="playYT()">▶ Пусни музика (1 мин)</button>
-          <button class="btn" onclick="stopYT()">⏸ Спри</button>
-          <a class="btn" href="#fortnite">Влизай</a>
-        </div>
+<main id="top">
+  <section class="hero">
+    <div>
+      <h1 class="welcome">Добре дошъл в GameZone</h1>
+      <p class="subtitle">ULTRA ефекти + гейминг вайб</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn magnet" onclick="playYT()"><span>▶ Музика 1 мин</span></button>
+        <a class="btn magnet" href="#fortnite"><span>Fortnite</span></a>
+        <a class="btn magnet" href="#cs"><span>CS</span></a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="fortnite" class="wrap">
-      <div class="card"><h2>🔥 Fortnite</h2><p>Скинове, оръжия, карти и съвети.</p></div>
-      <div class="card"><p>Скоро: клипове и билдове.</p></div>
-    </section>
-
-    <section id="cs" class="wrap">
-      <div class="card"><h2>💣 CS</h2><p>Смоукове, тактики и ъпдейти.</p></div>
-      <div class="card"><p>Скоро: гайдове за мапове.</p></div>
-    </section>
-
-    <section id="rules" class="wrap">
-      <div class="card">
-        <h2>📜 Правила</h2>
-        <ul>
-          <li>Без обиди и токсично поведение</li>
-          <li>Без чийтове/хакове</li>
-          <li>Без спам и реклами</li>
-          <li>Пази личните данни</li>
-          <li>Нарушения = бан</li>
-        </ul>
+  <section id="fortnite" class="wrap">
+    <div class="card">
+      <h2>🔥 Fortnite</h2>
+      <div class="video">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/2gUtfB3QhS4" allowfullscreen></iframe>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>© 2026 GameZone</footer>
+  <section id="cs" class="wrap">
+    <div class="card">
+      <h2>💣 CS</h2>
+      <div class="video">
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/edYCtaNueQY" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+</main>
 
-  <iframe id="ytplayer" width="0" height="0" style="display:none" allow="autoplay"></iframe>
+<footer>© 2026 GameZone</footer>
 
-  <script>
-    // reveal on scroll
-    const obs = new IntersectionObserver(es=>{
-      es.forEach(e=> e.isIntersecting && e.target.classList.add('show'));
-    },{threshold:.2});
-    document.querySelectorAll('.card').forEach(c=>obs.observe(c));
+<iframe id="ytplayer" width="0" height="0" style="display:none" allow="autoplay"></iframe>
 
-    // particles
-    const box = document.getElementById('particles');
-    for(let i=0;i<70;i++){
-      const p=document.createElement('span');
-      p.className='particle';
-      p.style.left=Math.random()*100+'vw';
-      p.style.animationDuration=(6+Math.random()*8)+'s';
-      p.style.animationDelay=(-Math.random()*10)+'s';
-      box.appendChild(p);
-    }
+<script>
+const obs=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting&&e.target.classList.add('show'))},{threshold:.2});
+document.querySelectorAll('.card').forEach(c=>obs.observe(c));
 
-    // ripple on buttons
-    document.querySelectorAll('.btn').forEach(btn=>{
-      btn.addEventListener('click', e=>{
-        const r=document.createElement('span');
-        r.className='ripple';
-        const rect=btn.getBoundingClientRect();
-        const size=Math.max(rect.width, rect.height);
-        r.style.width=r.style.height=size+'px';
-        r.style.left=(e.clientX-rect.left-size/2)+'px';
-        r.style.top =(e.clientY-rect.top -size/2)+'px';
-        btn.appendChild(r);
-        setTimeout(()=>r.remove(),600);
-      });
-    });
+const box=document.getElementById('particles');
+for(let i=0;i<80;i++){
+  const p=document.createElement('span');
+  p.className='particle';
+  p.style.left=Math.random()*100+'vw';
+  p.style.animationDuration=(6+Math.random()*8)+'s';
+  p.style.animationDelay=(-Math.random()*10)+'s';
+  box.appendChild(p);
+}
 
-    // YouTube 1 min
-    let t;
-    function playYT(){
-      const f=document.getElementById('ytplayer');
-      f.src="https://www.youtube.com/embed/29T7I5-0P5w?autoplay=1";
-      clearTimeout(t); t=setTimeout(stopYT, 60000);
-    }
-    function stopYT(){
-      const f=document.getElementById('ytplayer');
-      f.src=""; clearTimeout(t);
-    }
-  </script>
+document.addEventListener('mousemove', e=>{
+  const x=(e.clientX/window.innerWidth-.5)*10;
+  const y=(e.clientY/window.innerHeight-.5)*10;
+  document.getElementById('parallax').style.transform=`translate(${x}px, ${y}px)`;
+});
+
+let t;
+function playYT(){
+  const f=document.getElementById('ytplayer');
+  f.src="https://www.youtube.com/embed/29T7I5-0P5w?autoplay=1";
+  clearTimeout(t); t=setTimeout(()=>{f.src="";},60000);
+}
+</script>
 </body>
 </html>
+
