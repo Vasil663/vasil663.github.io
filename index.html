@@ -6,43 +6,69 @@
 <title>Gaming Hub</title>
 
 <style>
-html { scroll-behavior: smooth; }
+:root{
+  --bg:#020617;
+  --card:#0f172a;
+  --glow:#7c3aed;
+  --orange:#ff9900;
+}
 
+html{scroll-behavior:smooth;}
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   font-family:Arial, sans-serif;
-  background: radial-gradient(circle at top,#0f172a,#020617 70%);
+  background:radial-gradient(circle at top,#0f172a,#020617 70%);
   color:white;
   min-height:100vh;
+  overflow-x:hidden;
 }
 
+/* HEADER */
 header{
+  position:sticky;
+  top:0;
+  backdrop-filter:blur(10px);
   background:rgba(0,0,0,0.6);
-  padding:20px;
+  padding:15px;
   text-align:center;
-  border-bottom:2px solid #ff9900;
+  border-bottom:1px solid var(--glow);
+  z-index:10;
 }
 
-h1{margin-bottom:10px;}
-
-nav a{
-  color:#ff9900;
-  margin:0 10px;
+nav a, nav button{
+  color:#cbd5f5;
+  margin:0 8px;
   text-decoration:none;
   font-weight:bold;
+  background:transparent;
+  border:1px solid var(--glow);
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:.3s;
 }
 
+nav a:hover, nav button:hover{
+  box-shadow:0 0 15px var(--glow);
+  color:white;
+}
+
+/* SECTIONS */
 section{
   max-width:1100px;
-  margin:50px auto;
-  padding:20px;
-  background:#0f172a;
-  border-radius:15px;
-  box-shadow:0 0 25px rgba(255,153,0,0.3);
+  margin:60px auto;
+  padding:25px;
+  background:var(--card);
+  border-radius:18px;
+  box-shadow:0 0 30px rgba(124,58,237,.3);
 }
 
-h2{margin-bottom:20px;text-align:center;}
+h2{
+  margin-bottom:15px;
+  text-align:center;
+  text-shadow:0 0 10px var(--glow);
+}
 
 .grid{
   display:grid;
@@ -57,11 +83,12 @@ iframe{
   border-radius:12px;
 }
 
+/* BUTTON */
 .join-btn{
   display:inline-block;
   margin-top:20px;
-  padding:15px 30px;
-  background:#ff9900;
+  padding:14px 30px;
+  background:var(--orange);
   color:black;
   font-weight:bold;
   border-radius:10px;
@@ -70,22 +97,62 @@ iframe{
 }
 
 .join-btn:hover{
-  background:#ffb84d;
   transform:scale(1.05);
+  box-shadow:0 0 20px var(--orange);
 }
 
-ul{list-style:none;text-align:center;}
-ul li{margin:8px 0;}
+/* LOADING */
+#loading{
+  position:fixed;
+  inset:0;
+  background:#020617;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  transition:.8s;
+}
+
+#loading.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader{
+  font-size:28px;
+  font-weight:bold;
+  text-shadow:0 0 20px var(--glow);
+}
+
+/* SNOW */
+.snowflake{
+  position:fixed;
+  top:-10px;
+  color:#7dd3fc;
+  pointer-events:none;
+  animation:fall linear infinite;
+  z-index:999;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh);}
+}
 
 footer{
   text-align:center;
-  padding:30px;
+  padding:40px;
   color:#94a3b8;
 }
 </style>
 </head>
 
 <body>
+
+<div id="loading">
+  <div class="loader">🎮 Gaming Hub Loading...</div>
+</div>
+
+<audio id="bgMusic" src="https://cdn.pixabay.com/audio/2022/10/03/audio_7f3a4b7b65.mp3" loop></audio>
 
 <header>
   <h1>🎮 Gaming Hub</h1>
@@ -94,17 +161,18 @@ footer{
     <a href="#fortnite">Fortnite</a>
     <a href="#cs">CS</a>
     <a href="#music">Music</a>
+    <a href="#owners">Owners</a>
+    <a href="https://discord.gg/JP2vAUmE" target="_blank">Discord</a>
+    <button onclick="toggleMusic()">🎵 Music</button>
   </nav>
 </header>
 
-<!-- SERVER SECTION -->
+<!-- SERVER -->
 <section id="server">
   <h2>🔥 Summer City RP</h2>
   <p style="text-align:center;">ESX • Без whitelist • Средна икономика</p>
   <div style="text-align:center;">
-    <a href="fivem://connect/93.123.16.175:30120" class="join-btn">
-      🔥 JOIN SERVER
-    </a>
+    <button class="join-btn" onclick="connectServer()">🔥 JOIN SERVER</button>
   </div>
 </section>
 
@@ -134,19 +202,47 @@ footer{
   </div>
 </section>
 
-<section>
-  <h2>📜 Правила</h2>
-  <ul>
-    <li>❌ Без обиди</li>
-    <li>❌ Без спам</li>
-    <li>✅ Уважение</li>
-    <li>✅ Само gaming съдържание</li>
-  </ul>
+<!-- OWNERS -->
+<section id="owners">
+  <h2>👑 Owners</h2>
+  <p style="text-align:center;"><b>Brazilec</b> • <b>Arabina</b> • <b>Ryze</b></p>
+  <h3 style="text-align:center;margin-top:15px;">⭐ Co-Owner: Blago</h3>
 </section>
 
 <footer>
 © 2026 Gaming Hub
 </footer>
+
+<script>
+/* LOADING */
+window.addEventListener("load",()=>{
+  setTimeout(()=>document.getElementById("loading").classList.add("hide"),700);
+});
+
+/* CONNECT */
+function connectServer(){
+  window.location.href="fivem://connect/93.123.16.175:30120";
+}
+
+/* MUSIC */
+const music=document.getElementById("bgMusic");
+music.volume=0.1;
+window.addEventListener("click",()=>{ if(music.paused) music.play(); },{once:true});
+function toggleMusic(){ music.paused?music.play():music.pause(); }
+
+/* SNOW */
+function snow(){
+  const s=document.createElement("div");
+  s.className="snowflake";
+  s.innerHTML="❄";
+  s.style.left=Math.random()*window.innerWidth+"px";
+  s.style.animationDuration=5+Math.random()*5+"s";
+  s.style.fontSize=10+Math.random()*15+"px";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),10000);
+}
+setInterval(snow,200);
+</script>
 
 </body>
 </html>
