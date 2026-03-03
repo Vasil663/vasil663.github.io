@@ -1,211 +1,152 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gaming Hub</title>
 
 <style>
-:root{
-  --bg:#020617; --card:#020b1f; --glow:#7c3aed;
-  --fort:#22d3ee; --cs:#22c55e; --music:#e879f9;
-}
-*{box-sizing:border-box;margin:0;padding:0}
+html { scroll-behavior: smooth; }
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
 body{
-  font-family:system-ui,Arial,sans-serif;
-  background:radial-gradient(circle at top,#020a2a,#020617 70%);
-  color:#e5e7eb; min-height:100vh; overflow-x:hidden;
+  font-family:Arial, sans-serif;
+  background: radial-gradient(circle at top,#0f172a,#020617 70%);
+  color:white;
+  min-height:100vh;
 }
+
 header{
-  position:sticky; top:0; z-index:10;
-  backdrop-filter:blur(10px);
-  background:rgba(2,6,23,.8);
-  border-bottom:1px solid rgba(124,58,237,.35);
+  background:rgba(0,0,0,0.6);
+  padding:20px;
+  text-align:center;
+  border-bottom:2px solid #ff9900;
 }
-.nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
-.logo{font-weight:900;font-size:22px;color:#c4b5fd;text-shadow:0 0 12px #7c3aed}
-.menu a,.menu button{
-  margin-left:8px; text-decoration:none; color:#cbd5f5;
-  padding:8px 12px; border-radius:10px; font-weight:700;
-  background:transparent; border:1px solid rgba(124,58,237,.4);
-  cursor:pointer; transition:.2s;
+
+h1{margin-bottom:10px;}
+
+nav a{
+  color:#ff9900;
+  margin:0 10px;
+  text-decoration:none;
+  font-weight:bold;
 }
-.menu a:hover,.menu button:hover{box-shadow:0 0 16px #7c3aed;color:#fff}
-main{max-width:1200px;margin:40px auto 100px;padding:0 20px;display:flex;flex-direction:column;gap:40px}
+
 section{
-  background:linear-gradient(180deg,#020b1f,#020617);
-  border-radius:18px;padding:24px;
-  border:1px solid rgba(124,58,237,.25);
-  box-shadow:0 0 40px rgba(124,58,237,.25);
+  max-width:1100px;
+  margin:50px auto;
+  padding:20px;
+  background:#0f172a;
+  border-radius:15px;
+  box-shadow:0 0 25px rgba(255,153,0,0.3);
 }
-h2{margin-bottom:8px;font-size:28px;text-shadow:0 0 12px #7c3aed}
-.tags{color:#94a3b8;margin-bottom:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-.card{
-  background:#020617;border-radius:16px;padding:10px;
-  border:1px solid rgba(124,58,237,.3);
-  box-shadow:0 0 24px rgba(124,58,237,.35);
-  transition:.25s;
+
+h2{margin-bottom:20px;text-align:center;}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
 }
-.card:hover{transform:translateY(-6px) scale(1.02); box-shadow:0 0 40px #7c3aed}
-iframe{width:100%;aspect-ratio:16/9;border-radius:12px;border:none}
-.fortnite h2{color:var(--fort)} .cs h2{color:var(--cs)} .music h2{color:var(--music)}
-footer{text-align:center;padding:40px;color:#94a3b8}
 
-/* Loading */
-#loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
-  background:radial-gradient(circle at center,#020a2a,#020617 70%); z-index:9999}
-#loading.hide{opacity:0;visibility:hidden;transition:.8s}
-.loader{font-weight:900;font-size:26px;color:#c4b5fd;text-shadow:0 0 16px #7c3aed}
-.loader span{display:block;margin-top:10px;font-size:14px;color:#94a3b8}
+iframe{
+  width:100%;
+  aspect-ratio:16/9;
+  border:none;
+  border-radius:12px;
+}
 
-/* Snow */
-.snowflake{position:fixed;top:-10px;color:#7dd3fc;animation:fall linear infinite;pointer-events:none;text-shadow:0 0 8px #7dd3fc;z-index:999}
-@keyframes fall{to{transform:translateY(110vh)}}
+.join-btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:15px 30px;
+  background:#ff9900;
+  color:black;
+  font-weight:bold;
+  border-radius:10px;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.join-btn:hover{
+  background:#ffb84d;
+  transform:scale(1.05);
+}
+
+ul{list-style:none;text-align:center;}
+ul li{margin:8px 0;}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#94a3b8;
+}
 </style>
 </head>
 
 <body>
 
-<div id="loading"><div class="loader">🎮 Gaming Hub <span>Loading...</span></div></div>
-
-<audio id="bgMusic" src="https://cdn.pixabay.com/audio/2022/10/03/audio_7f3a4b7b65.mp3" loop></audio>
-
 <header>
-  <div class="nav">
-    <div class="logo">🎮 Gaming Hub</div>
-    <nav class="menu">
-      <a href="#fortnite">Fortnite</a>
-      <a href="#cs">CS</a>
-      <a href="#music">Music</a>
-      <a href="#twomin">2 Min</a>
-      <a href="#rules">Правила</a>
-      <a href="https://discord.gg/JP2vAUmE" target="_blank">Discord</a>
-      <button onclick="toggleMusic()">🎵 Music</button>
-    </nav>
-  </div>
+  <h1>🎮 Gaming Hub</h1>
+  <nav>
+    <a href="#server">Server</a>
+    <a href="#fortnite">Fortnite</a>
+    <a href="#cs">CS</a>
+    <a href="#music">Music</a>
+  </nav>
 </header>
 
-<main>
-  <section id="fortnite" class="fortnite">
-    <h2>Fortnite</h2>
-    <div class="grid">
-      <div class="card"><iframe src="https://www.youtube.com/embed/pV3Wa5qkJ8w" allowfullscreen></iframe></div>
-      <div class="card"><iframe src="https://www.youtube.com/embed/GOz0pPX9tvA" allowfullscreen></iframe></div>
-    </div>
-  </section>
-
-  <section id="cs" class="cs">
-    <h2>CS</h2>
-    <div class="grid">
-      <div class="card"><iframe src="https://www.youtube.com/embed/5dAdSchbwko" allowfullscreen></iframe></div>
-    </div>
-  </section>
-
-  <section id="music" class="music">
-    <h2>Music</h2>
-    <div class="grid">
-      <div class="card"><iframe src="https://www.youtube.com/embed/zoa8xnzKC_U" allowfullscreen></iframe></div>
-    </div>
-  </section>
-
-  <section id="twomin" class="music">
-    <h2>2 Minute Music</h2>
-    <div class="grid">
-      <div class="card"><iframe src="https://www.youtube.com/embed/gwsQg27p_H0" allowfullscreen></iframe></div>
-    </div>
-  </section>
-
-  <section id="rules">
-    <h2>Правила</h2>
-    <ul>
-      <li>❌ Без спам</li>
-      <li>❌ Без обиди</li>
-      <li>✅ Уважение</li>
-      <li>✅ Само gaming съдържание</li>
-    </ul>
-  </section>
-</main>
-
-<footer>© 2026 Gaming Hub</footer>
-
-<script>
-const music=document.getElementById("bgMusic");
-music.volume=0.12;
-window.addEventListener("click",()=>{ if(music.paused) music.play(); },{once:true});
-function toggleMusic(){ music.paused ? music.play() : music.pause(); }
-window.addEventListener("load",()=>{ setTimeout(()=>{ document.getElementById("loading").classList.add("hide"); },700);});
-function snow(){
-  const s=document.createElement("div"); s.className="snowflake"; s.innerHTML="❄";
-  s.style.left=Math.random()*window.innerWidth+"px";
-  s.style.animationDuration=5+Math.random()*6+"s";
-  s.style.fontSize=10+Math.random()*16+"px";
-  document.body.appendChild(s);
-  setTimeout(()=>s.remove(),11000);
-}
-setInterval(snow,200);
-</script>
-
-</body>
-</html><section id="owners">
-  <h2>👑 Owners</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Owner</h3>
-      <p><b>Brazilec</b></p>
-    </div>
-    <div class="card">
-      <h3>Owner</h3>
-      <p><b>Arabina</b></p>
-    </div>
-    <div class="card">
-      <h3>Owner</h3>
-      <p><b>Ryze</b></p>
-    </div>
-  </div>
-
-  <h2 style="margin-top: 30px;">⭐ Co-Owner</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Co-Owner</h3>
-      <p><b>Blago</b></p>
-    </div>
+<!-- SERVER SECTION -->
+<section id="server">
+  <h2>🔥 Summer City RP</h2>
+  <p style="text-align:center;">ESX • Без whitelist • Средна икономика</p>
+  <div style="text-align:center;">
+    <a href="fivem://connect/93.123.16.175:30120" class="join-btn">
+      🔥 JOIN SERVER
+    </a>
   </div>
 </section>
-<button onclick="discordLogin()" 
-style="width:100%;padding:10px;border:none;border-radius:8px;background:#5865F2;color:white;font-weight:bold;cursor:pointer;">
-Login with Discord
-</button>
 
-<script>
-function discordLogin(){
-  localStorage.setItem("logged","discord");
-  location.reload();
-}
-</script>
-<< href="fivem://connect/93.123.16.175:30120">
-  <button style="background:#ff9900;padding:12px 20px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;">
-    🔥 Join FiveM Server
-  </button>
+<!-- FORTNITE -->
+<section id="fortnite">
+  <h2>Fortnite</h2>
+  <div class="grid">
+    <iframe src="https://www.youtube.com/embed/pV3Wa5qkJ8w" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/GOz0pPX9tvA" allowfullscreen></iframe>
+  </div>
+</section>
 
-  
-<
+<!-- CS -->
+<section id="cs">
+  <h2>CS</h2>
+  <div class="grid">
+    <iframe src="https://www.youtube.com/embed/5dAdSchbwko" allowfullscreen></iframe>
+  </div>
+</section>
 
+<!-- MUSIC -->
+<section id="music">
+  <h2>Music</h2>
+  <div class="grid">
+    <iframe src="https://www.youtube.com/embed/zoa8xnzKC_U" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/gwsQg27p_H0" allowfullscreen></iframe>
+  </div>
+</section>
 
+<section>
+  <h2>📜 Правила</h2>
+  <ul>
+    <li>❌ Без обиди</li>
+    <li>❌ Без спам</li>
+    <li>✅ Уважение</li>
+    <li>✅ Само gaming съдържание</li>
+  </ul>
+</section>
 
+<footer>
+© 2026 Gaming Hub
+</footer>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</body>
+</html>
