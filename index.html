@@ -172,6 +172,17 @@ setInterval(snow,200);
     </div>
   </div>
 </section>
+<button onclick="discordLogin()" 
+style="width:100%;padding:10px;border:none;border-radius:8px;background:#5865F2;color:white;font-weight:bold;cursor:pointer;">
+Login with Discord
+</button>
+
+<script>
+function discordLogin(){
+  localStorage.setItem("logged","discord");
+  location.reload();
+}
+</script>
 
 
 
